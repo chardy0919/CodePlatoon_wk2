@@ -174,4 +174,4 @@ class StringUtils:
         clean_text = text.replace(" ", "").lower()
         return clean_text == clean_text[::-1]
     
-print(StringUtils.is_palindrome("racecar")) #true
+# print(StringUtils.is_palindrome("racecar")) #true
