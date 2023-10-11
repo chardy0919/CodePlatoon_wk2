@@ -61,6 +61,56 @@ Molly = Dog("Molly", "Dobrador", "Brown", "Moo")
 # Molly.speak()
 # Molly.fetch('refridgerator')
 # print(Molly.species)
+class Student:
+
+    all_students = {}
+    id = 0
+
+    def __init__(self, name, email):
+        Student.id += 1
+        self.name = name
+        self._id = Student.id #note how this called
+        self._email = email
+        Student.all_students[self._id] = self
+    
+    @property
+    def get_id(self):
+        return self._id
+    
+    @get_id.setter
+    def set_id(self, new_id):
+        if new_id.isnumeric():
+            self._id = new_id
+
+    @property
+    def get_email(self):
+        return self._email
+    
+    @get_email.setter
+    def set_email(self, new_email):
+        valid = "@student.org" 
+        if valid in new_email[:-len(valid)]:
+            self._email = new_email
+    
+    def go_to_school(self):
+        return f"{self.name} is going to school"
+    
+    def start_studying(self):
+        return f"{self.name} is starting to study"
+    
+    def __str__(self):
+        return f"Name: {self.name} | Id: {self._id} | Email: {self._email}"
+    
+    @classmethod
+    def add_a_student(cls):
+        name = input("Student name: ")
+        email = name + "@student.org"
+        cls(name, email)
+
+    @staticmethod
+    def view_all_students():
+        for student in Student.all_students:
+            print(Student.all_students[student])
 
 
 def my_decorator(func):
@@ -169,9 +219,9 @@ square = Rectangle.create_square(4)
 
 # is_palindrome() in a StringUtils class checks if a given string is a palindrome without needing any instance or class attributes.
 class StringUtils:
-    @staticmethod#specific decorator
+    @staticmethod #specific decorator
     def is_palindrome(text): #This is a static method
         clean_text = text.replace(" ", "").lower()
         return clean_text == clean_text[::-1]
     
-# print(StringUtils.is_palindrome("racecar")) #true
+print(StringUtils.is_palindrome("racecar")) #true
