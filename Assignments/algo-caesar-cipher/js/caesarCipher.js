@@ -1,3 +1,3 @@
-exports.caesarCipher = function() {
-
+exports.caesarCipher = function(string, shift) {
+    
 };
